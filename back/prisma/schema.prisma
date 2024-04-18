@@ -23,6 +23,7 @@ model Producto {
   categoria     Categoria @relation(fields: [categoria_id], references: [id_categoria])
   proveedor     ProductoProveedor[]
   inventario    Inventario[]
+  disabled      Boolean @default(false)
 }
 
 model Inventario {
