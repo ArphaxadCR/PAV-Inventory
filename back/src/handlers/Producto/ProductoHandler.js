@@ -137,7 +137,7 @@ class ProductoHandler {
     }
   }
 
-  static async update(id, nombre, descripcion) {
+  static async put(id, nombre, descripcion) {
     try {
       const producto = await prisma.producto.findFirst({
         where: {
@@ -149,13 +149,17 @@ class ProductoHandler {
         throw new Error("El producto no existe");
       }
 
+      let productoObj = {};
+
+      if (nombre) productoObj.nombre = nombre;
+      if (descripcion) productoObj.descripcion = descripcion;
+
       producto.update({
         where: {
           id,
         },
         data: {
-          nombre,
-          descripcion,
+          ...productoObj,
         },
       });
 

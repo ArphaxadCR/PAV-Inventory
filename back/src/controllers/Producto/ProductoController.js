@@ -137,7 +137,7 @@ class ProductoController {
     }
   }
 
-  static async update(req, res) {
+  static async put(req, res) {
     try {
       const { id } = req.params;
       const { nombre, descripcion } = req.body;
@@ -149,7 +149,7 @@ class ProductoController {
         });
       }
 
-      const response = await ProductoHandler.update(id, nombre, descripcion);
+      const response = await ProductoHandler.put(id, nombre, descripcion);
 
       res.status(200).json(response);
     } catch (error) {
